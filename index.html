@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Maafin Aku Ya...</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+                background: #ffb6c1;
+                min-height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                overflow: hidden;
+                position: relative;
+            }
+
+            body::before {
+                content: "❤️";
+                position: absolute;
+                font-size: 100px;
+                opacity: 0.1;
+                top: 10%;
+                left: 10%;
+                animation: pulse 3s ease-in-out infinite;
+            }
+
+            body::after {
+                content: "💕";
+                position: absolute;
+                font-size: 80px;
+                opacity: 0.1;
+                bottom: 15%;
+                right: 15%;
+                animation: pulse 3s ease-in-out infinite 1.5s;
+            }
+
+            @keyframes pulse {
+                0%,
+                100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+            }
+
+            .container {
+                text-align: center;
+                padding: 20px;
+            }
+
+            #nameInput {
+                background: white;
+                padding: 40px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                max-width: 400px;
+            }
+
+            #nameInput h1 {
+                color: #667eea;
+                margin-bottom: 20px;
+                font-size: 28px;
+            }
+
+            #nameInput input {
+                width: 100%;
+                padding: 15px;
+                border: 2px solid #667eea;
+                border-radius: 10px;
+                font-size: 16px;
+                margin-bottom: 20px;
+                outline: none;
+                transition: all 0.3s;
+            }
+
+            #nameInput input:focus {
+                border-color: #764ba2;
+                transform: scale(1.02);
+            }
+
+            #nameInput button {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                color: white;
+                padding: 15px 40px;
+                border: none;
+                border-radius: 10px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all 0.3s;
+            }
+
+            #nameInput button:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            }
+
+            #mainPage {
+                display: none;
+                background: white;
+                padding: 50px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                max-width: 600px;
+                position: relative;
+            }
+
+            #mainPage h1 {
+                color: #667eea;
+                margin-bottom: 30px;
+                font-size: 32px;
+            }
+
+            #mainPage p {
+                color: #333;
+                font-size: 18px;
+                line-height: 1.8;
+                margin-bottom: 40px;
+            }
+
+            .button-container {
+                display: flex;
+                gap: 20px;
+                justify-content: center;
+                position: relative;
+            }
+
+            .btn {
+                padding: 15px 40px;
+                border: none;
+                border-radius: 10px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all 0.3s;
+                font-weight: bold;
+            }
+
+            #btnYes {
+                background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+                color: white;
+            }
+
+            #btnYes:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 10px 20px rgba(17, 153, 142, 0.4);
+            }
+
+            #btnNo {
+                background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+                color: white;
+                transition: all 0.1s;
+            }
+
+            #btnNo.moved {
+                position: fixed;
+            }
+
+            .heart {
+                position: fixed;
+                font-size: 40px;
+                animation: float 3s ease-in forwards;
+                pointer-events: none;
+                z-index: 1000;
+            }
+
+            .flower {
+                position: fixed;
+                font-size: 35px;
+                animation: float 3s ease-in forwards;
+                pointer-events: none;
+                z-index: 1000;
+            }
+
+            @keyframes float {
+                0% {
+                    bottom: -50px;
+                    opacity: 1;
+                    transform: translateX(0) rotate(0deg);
+                }
+                100% {
+                    bottom: 110vh;
+                    opacity: 0;
+                    transform: translateX(var(--x-move)) rotate(360deg);
+                }
+            }
+
+            .celebration {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                pointer-events: none;
+                z-index: 999;
+            }
+
+            #successMessage {
+                display: none;
+                background: white;
+                padding: 50px;
+                border-radius: 20px;
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+                max-width: 500px;
+                text-align: center;
+            }
+
+            #successMessage h1 {
+                color: #11998e;
+                margin-bottom: 20px;
+                font-size: 36px;
+            }
+
+            #successMessage p {
+                color: #333;
+                font-size: 20px;
+                line-height: 1.6;
+            }
+
+            .hide {
+                display: none !important;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div id="nameInput">
+                <h1>💝 Maafin Aku Ya... 💝</h1>
+                <input
+                    type="text"
+                    id="nameField"
+                    placeholder="Masukkan nama kamu..."
+                    autocomplete="off"
+                />
+                <button onclick="startApp()">Lanjut</button>
+            </div>
+
+            <div id="mainPage">
+                <h1>Sayang... <span id="displayName"></span> 💕</h1>
+                <p>
+                    Aku tahu aku salah... Maafin aku ya sayang 🥺<br /><br />
+                    Aku janji nggak akan ngulangin lagi. Kamu tau kan aku sayang
+                    banget sama kamu? Hidup aku nggak lengkap tanpa kamu...
+                    ❤️<br /><br />
+                    Maafin aku ya? Please... 🙏
+                </p>
+                <div class="button-container">
+                    <button class="btn" id="btnYes" onclick="forgive()">
+                        💖 Maafkan
+                    </button>
+                    <button class="btn" id="btnNo">😤 Tidak</button>
+                </div>
+            </div>
+
+            <div id="successMessage">
+                <h1>Makasih Sayang! 💕</h1>
+                <p>
+                    Aku sayang banget sama kamu! ❤️<br />
+                    Aku janji akan jadi yang lebih baik lagi! 🥰
+                </p>
+            </div>
+        </div>
+
+        <div class="celebration"></div>
+
+        <script>
+            let nameValue = "";
+            const btnNo = document.getElementById("btnNo");
+
+            function startApp() {
+                nameValue = document.getElementById("nameField").value.trim();
+                if (nameValue === "") {
+                    alert("Masukkan nama dulu dong sayang... 🥺");
+                    return;
+                }
+                document.getElementById("displayName").textContent = nameValue;
+                document.getElementById("nameInput").classList.add("hide");
+                document.getElementById("mainPage").style.display = "block";
+            }
+
+            document
+                .getElementById("nameField")
+                .addEventListener("keypress", function (e) {
+                    if (e.key === "Enter") {
+                        startApp();
+                    }
+                });
+
+            btnNo.addEventListener("mouseenter", function () {
+                moveButton();
+            });
+
+            btnNo.addEventListener("touchstart", function (e) {
+                e.preventDefault();
+                moveButton();
+            });
+
+            btnNo.addEventListener("click", function (e) {
+                e.preventDefault();
+                moveButton();
+            });
+
+            function moveButton() {
+                const maxX = window.innerWidth - btnNo.offsetWidth - 50;
+                const maxY = window.innerHeight - btnNo.offsetHeight - 50;
+
+                const randomX = Math.random() * maxX;
+                const randomY = Math.random() * maxY;
+
+                btnNo.classList.add("moved");
+                btnNo.style.left = randomX + "px";
+                btnNo.style.top = randomY + "px";
+            }
+
+            function forgive() {
+                document.getElementById("mainPage").classList.add("hide");
+                document.getElementById("successMessage").style.display =
+                    "block";
+
+                createCelebration();
+            }
+
+            function createCelebration() {
+                const celebration = document.querySelector(".celebration");
+                const hearts = ["❤️", "💕", "💖", "💗", "💝", "💘", "💞"];
+                const flowers = ["🌸", "🌺", "🌼", "🌻", "🌷", "🌹", "💐"];
+
+                let count = 0;
+                const interval = setInterval(() => {
+                    if (count >= 50) {
+                        clearInterval(interval);
+                        return;
+                    }
+
+                    const isHeart = Math.random() > 0.5;
+                    const element = document.createElement("div");
+                    element.className = isHeart ? "heart" : "flower";
+                    element.textContent = isHeart
+                        ? hearts[Math.floor(Math.random() * hearts.length)]
+                        : flowers[Math.floor(Math.random() * flowers.length)];
+                    element.style.left = Math.random() * 100 + "%";
+                    element.style.setProperty(
+                        "--x-move",
+                        (Math.random() - 0.5) * 200 + "px",
+                    );
+                    element.style.animationDelay = Math.random() * 0.5 + "s";
+
+                    celebration.appendChild(element);
+
+                    setTimeout(() => {
+                        element.remove();
+                    }, 3000);
+
+                    count++;
+                }, 100);
+            }
+        </script>
+    </body>
+</html>

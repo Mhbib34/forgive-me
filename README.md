@@ -1,18 +1,20 @@
 # 📱 Panduan Penggunaan
 
 ## 📋 Cara Menggunakan
+### Langkah 1: Download File
+- Download fle index.html 
 
-### Langkah 1: Buka Aplikasi
+### Langkah 2: Buka Aplikasi
 - Buka file HTML di browser (Chrome, Firefox, Safari, atau Edge)
 - Aplikasi akan langsung menampilkan halaman awal dengan background pink dan hati-hati lucu
 
-### Langkah 2: Input Nama Pacar
+### Langkah 3: Input Nama Pacar
 - Kamu akan melihat kotak input dengan tulisan "Masukkan nama kamu..."
 - Ketik nama pacar kamu di kolom tersebut
 - Klik tombol **"Lanjut"** atau tekan **Enter** di keyboard
 - ⚠️ Jangan lupa isi namanya ya, kalau kosong akan muncul peringatan!
 
-### Langkah 3: Halaman Permohonan Maaf
+### Langkah 4: Halaman Permohonan Maaf
 Setelah input nama, kamu akan masuk ke halaman utama yang berisi:
 - Sapaan dengan nama pacar kamu
 - Teks permohonan maaf yang manis
@@ -20,7 +22,7 @@ Setelah input nama, kamu akan masuk ke halaman utama yang berisi:
   - 💖 **Maafkan** (tombol hijau)
   - 😤 **Tidak** (tombol merah)
 
-### Langkah 4: Interaksi dengan Tombol
+### Langkah 5: Interaksi dengan Tombol
 
 #### Tombol "Tidak" 🏃‍♂️
 - Tombol ini **TIDAK BISA DIKLIK!**
@@ -32,7 +34,7 @@ Setelah input nama, kamu akan masuk ke halaman utama yang berisi:
 - Tombol ini berfungsi normal dan bisa diklik dengan mudah
 - Klik tombol ini untuk melanjutkan
 
-### Langkah 5: Animasi Celebration 🎉
+### Langkah 6: Animasi Celebration 🎉
 Setelah tombol "Maafkan" diklik:
 - Muncul pesan "Makasih Sayang!" dengan ucapan terima kasih
 - Animasi **hati** ❤️💕💖💗💝💘💞 dan **bunga** 🌸🌺🌼🌻🌷🌹💐 akan berterbangan dari bawah ke atas
